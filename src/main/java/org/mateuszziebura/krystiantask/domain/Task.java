@@ -8,6 +8,9 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Task {
 
     @Id
