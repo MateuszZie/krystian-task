@@ -21,6 +21,9 @@
             <form  th:object="${order}" th:action="@{/new/}"  method="post">
                 <input type="hidden" th:field="*{orderNumber}"/>
                 <div class="pannel-group">
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <p>Proszę wypełnić formularz</p>
+                    </div>
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
@@ -31,6 +34,11 @@
                         </div>
                         <div class="panel-body">
                             <input type="datetime-local" class="form-control" th:field="*{orderDeadline}"/>
+                            <span class="help-block" th:if="${#fields.hasErrors('orderDeadline')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('orderDeadline')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -43,6 +51,11 @@
                         </div>
                         <div class="panel-body">
                             <input type="number" class="form-control" th:field="*{quantityPlaned}"/>
+                            <span class="help-block" th:if="${#fields.hasErrors('quantityPlaned')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('quantityPlaned')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                         </div>
                     </div>
                     <div class="panel panel-primary">
@@ -55,6 +68,11 @@
                         </div>
                         <div class="panel-body">
                             <input type="number" class="form-control" th:field="*{quantityCheckedIn}"/>
+                            <span class="help-block" th:if="${#fields.hasErrors('quantityCheckedIn')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('quantityCheckedIn')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Dodaj</button>
