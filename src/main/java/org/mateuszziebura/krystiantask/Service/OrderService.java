@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface OrderService {
     List<Task> findAll();
+    Task save(Task task);
 }

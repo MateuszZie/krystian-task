@@ -17,4 +17,9 @@ public class OrderServiceImpl implements OrderService {
     public List<Task> findAll() {
         return taskRepository.findAll();
     }
+
+    @Override
+    public Task save(Task task) {
+        return taskRepository.save(task);
+    }
 }

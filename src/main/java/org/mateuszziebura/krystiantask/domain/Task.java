@@ -16,7 +16,7 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderNumber;
-    private Timestamp orderDeadline;
+    private String orderDeadline;
     private Integer quantityPlaned;
     private Integer quantityCheckedIn;
 

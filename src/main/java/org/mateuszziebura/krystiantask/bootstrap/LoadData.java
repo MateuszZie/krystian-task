@@ -23,10 +23,10 @@ public class LoadData implements CommandLineRunner {
     }
 
     private void loadData() {
-        Task task = Task.builder().orderDeadline(Timestamp.valueOf("2018-09-01 09:01:15")).quantityPlaned(100).quantityCheckedIn(80).build();
-        Task task2 = Task.builder().orderDeadline(Timestamp.valueOf("2019-09-01 09:01:15")).quantityPlaned(200).quantityCheckedIn(120).build();
-        Task task3 = Task.builder().orderDeadline(Timestamp.valueOf("2018-10-01 09:01:15")).quantityPlaned(321).quantityCheckedIn(43).build();
-        Task task4 = Task.builder().orderDeadline(Timestamp.valueOf("2018-09-01 22:05:15")).quantityPlaned(200).quantityCheckedIn(25).build();
+        Task task = Task.builder().orderDeadline("2018-09-01 09:01:15").quantityPlaned(100).quantityCheckedIn(80).build();
+        Task task2 = Task.builder().orderDeadline("2019-09-01 09:01:15").quantityPlaned(200).quantityCheckedIn(120).build();
+        Task task3 = Task.builder().orderDeadline("2018-10-01 09:01:15").quantityPlaned(321).quantityCheckedIn(43).build();
+        Task task4 = Task.builder().orderDeadline("2018-09-01 22:05:15").quantityPlaned(200).quantityCheckedIn(25).build();
 
         taskRepository.save(task);
         taskRepository.save(task2);
