@@ -3,16 +3,17 @@ package org.mateuszziebura.krystiantask.domain;
 import lombok.*;
 import org.mateuszziebura.krystiantask.domain.security.User;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@Entity
 public class History {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderNumber;
     private Timestamp checkIn;
-    private User user;
     public Integer quantity;
+    private String userName;
 }
