@@ -33,6 +33,10 @@ public class HomeController {
     @PostMapping("/new")
     public String save(@Valid @ModelAttribute("order") Task task, BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.toString());
+            });
             return "newOrder";
         }
         orderService.save(task);
