@@ -2,24 +2,37 @@ package org.mateuszziebura.krystiantask.bootstrap;
 
 import lombok.RequiredArgsConstructor;
 import org.mateuszziebura.krystiantask.domain.Task;
+import org.mateuszziebura.krystiantask.domain.security.Authority;
+import org.mateuszziebura.krystiantask.domain.security.User;
+import org.mateuszziebura.krystiantask.repository.security.AuthorityRepository;
 import org.mateuszziebura.krystiantask.repository.TaskRepository;
+import org.mateuszziebura.krystiantask.repository.security.UserRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.sql.Timestamp;
-import java.time.LocalDate;
 
 @Component
 @RequiredArgsConstructor
 public class LoadData implements CommandLineRunner {
 
     private final TaskRepository taskRepository;
+    private final AuthorityRepository authorityRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
         if(taskRepository.findAll().size()==0){
+            loadUsers();
             loadData();
         }
+    }
+
+    private void loadUsers() {
+        Authority savedUser =authorityRepository.save(Authority.builder().role("ROLE_USER").build());
+        User user1 = User.builder().username("krystian").authority(savedUser).password(passwordEncoder.encode("lis")).build();
+
+        userRepository.save(user1);
     }
 
     private void loadData() {
