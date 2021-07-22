@@ -23,8 +23,6 @@ public class Task {
     @NonNull
     @Min(0)
     private Integer quantityPlaned;
-    @NonNull
-    @Min(0)
     private Integer quantityCheckedIn;
 
 }
