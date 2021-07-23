@@ -9,4 +9,5 @@ public interface OrderService {
     List<Task> findAll();
     Task save(Task task);
     List<History> history(Integer id);
+    void addQuantity(String id, Integer quantity,String username);
 }

@@ -36,7 +36,7 @@ public class LoadData implements CommandLineRunner {
 
     private void loadUsers() {
         Authority savedUser =authorityRepository.save(Authority.builder().role("ROLE_USER").build());
-        User user1 = User.builder().username("krystian").authority(savedUser).password(passwordEncoder.encode("lis")).build();
+        User user1 = User.builder().username("krystian").firstName("Krystian").lastName("Lis").authority(savedUser).password(passwordEncoder.encode("lis")).build();
 
         userRepository.save(user1);
     }

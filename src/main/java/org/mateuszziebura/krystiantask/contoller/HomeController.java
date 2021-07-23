@@ -3,7 +3,11 @@ package org.mateuszziebura.krystiantask.contoller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.mateuszziebura.krystiantask.Service.OrderService;
+import org.mateuszziebura.krystiantask.domain.Data;
+import org.mateuszziebura.krystiantask.domain.History;
 import org.mateuszziebura.krystiantask.domain.Task;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,5 +52,23 @@ public class HomeController {
         model.addAttribute("histories", orderService.history(Integer.valueOf(id)));
         model.addAttribute("id", id);
         return "history";
+    }
+    @GetMapping("addQuantity")
+    public String addQuantity(Model model){
+        model.addAttribute("orders", orderService.findAll());
+        model.addAttribute("task", new Data());
+        return "made";
+    }
+    @PostMapping("addQuantity")
+    public String postQuantity(@Valid @ModelAttribute("task") Data data,BindingResult bindingResult){
+        if(bindingResult.hasErrors()) {
+
+            bindingResult.getAllErrors().forEach(objectError -> {
+                log.debug(objectError.toString());
+            });
+            return "made";
+        }
+        orderService.addQuantity(data.getId(),data.getQuantity(),((User) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUsername());
+        return "redirect:/home";
     }
 }

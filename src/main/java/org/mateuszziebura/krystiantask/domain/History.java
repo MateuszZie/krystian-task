@@ -5,6 +5,8 @@ import org.mateuszziebura.krystiantask.domain.security.User;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @Entity

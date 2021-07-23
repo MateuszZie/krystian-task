@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Wykonaną Ilość</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}">
+
+    <script src="/webjars/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous" th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-2 col-md-offset-5">
+            <a href="#" th:href="@{'/home'}">Strona Główna</a>
+            <form th:object="${task}" th:action="@{/addQuantity/}"  method="post">
+                <div class="pannel-group">
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <p>Proszę wypełnić formularz</p>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h1 class="panel-title">Numer Zamówienia</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <select class="form-control" name="order.orderNumber" th:field="*{id}">
+                                <option th:each="order : ${orders}"
+                                        th:value="${order.orderNumber}"
+                                        th:text="${order.orderNumber}">Id</option>
+                            </select>
+                            <span class="help-block" th:if="${#fields.hasErrors('id')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('id')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                        </div>
+                    </div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h1 class="panel-title">Ilość Wykonana</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <input type="number" class="form-control" th:field="*{quantity}"/>
+                            <span class="help-block" th:if="${#fields.hasErrors('quantity')}">
+                                        <ul>
+                                            <li th:each="err : ${#fields.errors('quantity')}" th:text="${err}"/>
+                                        </ul>
+                                    </span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Dodaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -2,8 +2,6 @@ package org.mateuszziebura.krystiantask.domain.security;
 
 
 import lombok.*;
-import org.springframework.security.core.CredentialsContainer;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,6 +18,7 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String username;
     private String password;
     private String firstName;

@@ -22,9 +22,9 @@ public class Task {
     @NotBlank
     private String orderDeadline;
     @NonNull
-    @Min(0)
+    @Min(1)
     private Integer quantityPlaned;
-    private Integer quantityCheckedIn;
+    private Integer quantityCheckedIn=0;
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private Set<History> histories;
 
