@@ -49,4 +49,16 @@ public class OrderServiceImpl implements OrderService {
         taskRepository.save(task);
 
     }
+
+    @Override
+    public List<Task> findAllActiveTask() {
+        List<Task> tasks = new ArrayList<>();
+
+        for (Task task: taskRepository.findAll()){
+            if(task.getQuantityPlaned()> task.getQuantityCheckedIn()){
+                tasks.add(task);
+            }
+        }
+        return tasks;
+    }
 }

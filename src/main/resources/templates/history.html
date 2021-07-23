@@ -20,7 +20,14 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title" th:text="'Historia Zlecenia Numer ' +${id}">History</h1>
+                    <div class="row">
+                        <div class="col-md-10">
+                        <h1 class="panel-title" th:text="'Historia Zlecenia Numer ' +${id}">History</h1>
+                            </div>
+                        <div class="col-md-1">
+                            <a class="panel-title" th:href="@{'/logout'}" th:text="'Wyloguj'">Wyloguj</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="panel-body">
                     <a href="#" th:href="@{'/home'}">Strona Główna</a>

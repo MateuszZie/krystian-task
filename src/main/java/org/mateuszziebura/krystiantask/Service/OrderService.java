@@ -10,4 +10,5 @@ public interface OrderService {
     Task save(Task task);
     List<History> history(Integer id);
     void addQuantity(String id, Integer quantity,String username);
+    List<Task> findAllActiveTask();
 }

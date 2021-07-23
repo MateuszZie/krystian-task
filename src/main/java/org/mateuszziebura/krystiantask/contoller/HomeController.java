@@ -55,20 +55,25 @@ public class HomeController {
     }
     @GetMapping("addQuantity")
     public String addQuantity(Model model){
-        model.addAttribute("orders", orderService.findAll());
+        model.addAttribute("orders", orderService.findAllActiveTask());
         model.addAttribute("task", new Data());
         return "made";
     }
     @PostMapping("addQuantity")
-    public String postQuantity(@Valid @ModelAttribute("task") Data data,BindingResult bindingResult){
+    public String postQuantity(@Valid @ModelAttribute("task") Data data,BindingResult bindingResult,Model model){
         if(bindingResult.hasErrors()) {
 
+            model.addAttribute("orders", orderService.findAllActiveTask());
             bindingResult.getAllErrors().forEach(objectError -> {
                 log.debug(objectError.toString());
             });
             return "made";
         }
-        orderService.addQuantity(data.getId(),data.getQuantity(),((User) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUsername());
+        orderService.addQuantity(data.getId(),data.getQuantity(), getUsername());
         return "redirect:/home";
+    }
+
+    private String getUsername() {
+        return ((User) (SecurityContextHolder.getContext().getAuthentication().getPrincipal())).getUsername();
     }
 }
