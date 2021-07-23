@@ -15,7 +15,9 @@ public class History {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer orderNumber;
+    private Integer id;
+    @ManyToOne
+    private Task task;
     private Timestamp checkIn;
     public Integer quantity;
     private String userName;

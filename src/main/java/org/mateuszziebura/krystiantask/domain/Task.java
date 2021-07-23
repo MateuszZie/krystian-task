@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 
 @Getter
@@ -24,5 +25,7 @@ public class Task {
     @Min(0)
     private Integer quantityPlaned;
     private Integer quantityCheckedIn;
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private Set<History> histories;
 
 }

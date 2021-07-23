@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Historia</title>
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
         integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
@@ -20,30 +20,22 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h1 class="panel-title" th:text="'Lista Zleceń'">Orders</h1>
+                    <h1 class="panel-title" th:text="'Historia Zlecenia Numer ' +${id}">History</h1>
                 </div>
                 <div class="panel-body">
-                    <div class="row">
-                        <div class="col-md-2">
-                    <a href="#" th:href="@{'/new'}">Nowe zlecenie</a>
-                        </div>
-                        <div class="col-md-3">
-                            <a href="#" th:href="@{'/new'}">Dodaj ilość wykonaną</a>
-                        </div>
-                    </div>
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(orders)}">
+                    <a href="#" th:href="@{'/home'}">Strona Główna</a>
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(histories)}">
                         <table class="table table-hover ">
                             <thead>.
                             <tr>
-                                <th>Numer zlecenia</th><th>Planowany Koniec</th><th>Ilość zaplanowana</th><th>Ilość zameldowana</th>
+                                <th>Imie Nazwisko</th><th>Data</th><th>Ilość zameldowana</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="order: ${orders}">
-                                <td><h5><a th:href="@{'/history/'+${order.orderNumber}}" th:text="${order.orderNumber}">numer</a></h5></td>
-                                <td><h5  th:text="${order.orderDeadline}">data</h5></td>
-                                <td><h5  th:text="${order.quantityPlaned}">ilość</h5></td>
-                                <td><h5  th:text="${order.quantityCheckedIn}">ilość</h5></td>
+                            <tr th:each="history: ${histories}">
+                                <td><h5  th:text="${history.userName}">imie nazwisko</h5></td>
+                                <td><h5  th:text="${history.checkIn}">data</h5></td>
+                                <td><h5  th:text="${history.quantity}">ilość</h5></td>
                             </tr>
                             </tbody>
                         </table>
